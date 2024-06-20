@@ -15,8 +15,9 @@ class Food(turtle.Turtle):
     def refresh(self, snakebody):
         coordinate_x = random.randint(-280, 280)
         coordinate_y = random.randint(-280, 280)
+        point = (coordinate_x, coordinate_y)
         for segment in snakebody:
-            while coordinate_x == segment.xcor() and coordinate_y == segment.ycor():
+            while segment.distance(point) < 10:
                 self.refresh(snakebody)
 
         self.setposition(coordinate_x, coordinate_y)

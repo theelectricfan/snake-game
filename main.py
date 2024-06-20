@@ -29,19 +29,25 @@ window.update()
 
 def game():
     snake.move()
-    if snake.snakebody[0].distance(food) < 15:
+    if snake.snakebody[0].distance(food) < 17:
         food.refresh(snake.snakebody)
         scoreboard.update_score()
         snake.extend()
 
     for segment in snake.snakebody[1:]:
         if snake.snakebody[0].distance(segment) < 10:
-            scoreboard.game_over()
+            scoreboard.resetScore()
+            snake.remove_snake()
+            snake.__init__()
+            game()
             return
 
     if snake.snakebody[0].xcor() > 280 or snake.snakebody[0].xcor() < -280 or snake.snakebody[0].ycor() > 280 or \
             snake.snakebody[0].ycor() < -280:
-        scoreboard.game_over()
+        scoreboard.resetScore()
+        snake.remove_snake()
+        snake.__init__()
+        game()
         return
 
     window.update()

@@ -47,3 +47,10 @@ class Snake:
         if self.snakebody[0].heading() == 180:
             return
         self.snakebody[0].setheading(0)
+
+    def remove_snake(self):
+        for n in self.snakebody:
+            n.hideturtle()
+            del n
+        self.snakebody.clear()
+
